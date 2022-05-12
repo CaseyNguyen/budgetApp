@@ -1,1 +1,3 @@
-# budgetApp
+# Budge
+
+Budgeting app.
