@@ -9,7 +9,7 @@
       "stopAtEntry": false,
       "cwd": "c:/Users/casey/Documents/GitHub/budgetApp",
       "environment": [],
-      "program": "c:/Users/casey/Documents/GitHub/budgetApp/build/Debug/outDebug",
+      "program": "c:/Users/casey/Documents/GitHub/budgetApp/build/main.cpp",
       "internalConsoleOptions": "openOnSessionStart",
       "MIMode": "gdb",
       "miDebuggerPath": "C:/msys64/mingw64/bin/gdb.exe",
