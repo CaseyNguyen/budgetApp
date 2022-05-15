@@ -1,0 +1,102 @@
+<html>
+<head>
+<title>Budget.cpp</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #808080;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #bbb529;}
+.s3 { color: #6a8759;}
+.s4 { color: #cc7832;}
+.s5 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Budget.cpp</font>
+</center></td></tr></table>
+<pre><span class="s0">// Casey Nguyen</span>
+<span class="s0">// budget.cpp</span>
+<span class="s0">// Created April 20th, 2022</span>
+
+<span class="s2">#include </span><span class="s3">&quot;budget.h&quot;</span>
+
+<span class="s0">// -- Private Functions --</span>
+<span class="s1">std::string Budget::roundString(</span><span class="s4">double </span><span class="s1">rawVal){</span>
+    <span class="s1">std::stringstream inStream</span><span class="s4">;</span>
+    <span class="s1">inStream &lt;&lt; std::fixed &lt;&lt; std::setprecision(</span><span class="s5">2</span><span class="s1">) &lt;&lt; rawVal</span><span class="s4">;</span>
+    <span class="s1">std::string fixed = inStream.str()</span><span class="s4">;</span>
+    <span class="s4">return </span><span class="s1">fixed</span><span class="s4">;</span>
+<span class="s1">}</span>
+
+<span class="s4">double </span><span class="s1">Budget::roundVal(</span><span class="s4">double </span><span class="s1">rawVal){</span>
+    <span class="s4">return </span><span class="s1">(std::stod(roundString(rawVal)))</span><span class="s4">;</span>
+<span class="s1">}</span>
+
+<span class="s0">// -- Public Functions --</span>
+<span class="s1">Budget::Budget(){</span>
+    <span class="s1">budgetCount = </span><span class="s5">4</span><span class="s4">;</span>
+    <span class="s1">budgetSum = </span><span class="s4">new double</span><span class="s1">[budgetCount]</span><span class="s4">;</span>
+    <span class="s4">for </span><span class="s1">(</span><span class="s4">int </span><span class="s1">i = </span><span class="s5">0</span><span class="s4">; </span><span class="s1">i &lt; budgetCount</span><span class="s4">; </span><span class="s1">i++) budgetSum[i] = </span><span class="s5">0.0</span><span class="s4">;</span>
+    <span class="s1">budgetPct = </span><span class="s4">new double</span><span class="s1">[budgetCount - </span><span class="s5">1</span><span class="s1">]</span><span class="s4">;</span>
+    <span class="s1">budgetPct[</span><span class="s5">0</span><span class="s1">] = </span><span class="s5">0.5</span><span class="s4">;</span>
+    <span class="s1">budgetPct[</span><span class="s5">1</span><span class="s1">] = </span><span class="s5">0.3</span><span class="s4">;</span>
+    <span class="s1">budgetPct[</span><span class="s5">2</span><span class="s1">] = </span><span class="s5">0.2</span><span class="s4">;</span>
+<span class="s1">}</span>
+
+<span class="s1">Budget::~Budget(){</span>
+    <span class="s4">delete </span><span class="s1">[] budgetSum</span><span class="s4">;</span>
+    <span class="s4">delete </span><span class="s1">[] budgetPct</span><span class="s4">;</span>
+<span class="s1">}</span>
+
+<span class="s1">std::string Budget::showBudget(){</span>
+    <span class="s1">std::string retSum = </span><span class="s3">&quot;Budget:</span><span class="s4">\n</span><span class="s3">&quot;</span><span class="s4">;</span>
+    <span class="s1">std::string addLine = </span><span class="s3">&quot;You have $&quot;</span><span class="s4">;</span>
+    <span class="s1">addLine += roundString((budgetSum[</span><span class="s5">0</span><span class="s1">] * budgetPct[</span><span class="s5">0</span><span class="s1">]) - budgetSum[</span><span class="s5">1</span><span class="s1">])</span><span class="s4">;</span>
+    <span class="s1">addLine += </span><span class="s3">&quot; for needs.</span><span class="s4">\n</span><span class="s3">&quot;</span><span class="s4">;</span>
+    <span class="s1">retSum += addLine</span><span class="s4">;</span>
+    <span class="s1">addLine = </span><span class="s3">&quot;You have $&quot;</span><span class="s4">;</span>
+    <span class="s1">addLine += roundString((budgetSum[</span><span class="s5">0</span><span class="s1">] * budgetPct[</span><span class="s5">1</span><span class="s1">]) - budgetSum[</span><span class="s5">2</span><span class="s1">])</span><span class="s4">;</span>
+    <span class="s1">addLine += </span><span class="s3">&quot; for wants.</span><span class="s4">\n</span><span class="s3">&quot;</span><span class="s4">;</span>
+    <span class="s1">retSum += addLine</span><span class="s4">;</span>
+    <span class="s1">addLine = </span><span class="s3">&quot;You have $&quot;</span><span class="s4">;</span>
+    <span class="s1">addLine += roundString((budgetSum[</span><span class="s5">0</span><span class="s1">] * budgetPct[</span><span class="s5">2</span><span class="s1">]) - budgetSum[</span><span class="s5">3</span><span class="s1">])</span><span class="s4">;</span>
+    <span class="s1">addLine += </span><span class="s3">&quot; for saves.</span><span class="s4">\n</span><span class="s3">&quot;</span><span class="s4">;</span>
+    <span class="s1">retSum += addLine</span><span class="s4">;</span>
+    <span class="s4">return </span><span class="s1">retSum</span><span class="s4">;</span>
+<span class="s1">}</span>
+
+<span class="s4">void </span><span class="s1">Budget::addIncome(</span><span class="s4">double </span><span class="s1">cashVal){</span>
+    <span class="s0">// start: guard clauses</span>
+    <span class="s4">if </span><span class="s1">(cashVal &lt; </span><span class="s5">0.01</span><span class="s1">)</span>
+        <span class="s4">throw</span><span class="s1">(</span><span class="s3">&quot;Invalid cash value. Must be the absolute value.&quot;</span><span class="s1">)</span><span class="s4">;</span>
+    <span class="s0">// end: guard clauses</span>
+    <span class="s1">budgetSum[</span><span class="s5">0</span><span class="s1">] += roundVal(cashVal)</span><span class="s4">;</span>
+<span class="s1">}</span>
+
+<span class="s4">void </span><span class="s1">Budget::addExpense(</span><span class="s4">double </span><span class="s1">cashVal</span><span class="s4">, unsigned int </span><span class="s1">type){</span>
+    <span class="s0">// start: guard clauses</span>
+    <span class="s4">if </span><span class="s1">(cashVal &lt; </span><span class="s5">0.01</span><span class="s1">)</span>
+        <span class="s4">throw</span><span class="s1">(</span><span class="s3">&quot;Invalid cash value. Must be the absolute value.&quot;</span><span class="s1">)</span><span class="s4">;</span>
+    <span class="s4">if </span><span class="s1">(type &lt; </span><span class="s5">1 </span><span class="s1">|| type &gt; </span><span class="s5">3</span><span class="s1">)</span>
+        <span class="s4">throw</span><span class="s1">(</span><span class="s3">&quot;Invalid type. Must be between 1 and 3.&quot;</span><span class="s1">)</span><span class="s4">;</span>
+    <span class="s0">// end: guard clauses</span>
+    <span class="s4">if </span><span class="s1">(type == </span><span class="s5">1</span><span class="s1">) budgetSum[</span><span class="s5">1</span><span class="s1">] += roundVal(cashVal)</span><span class="s4">;</span>
+    <span class="s4">else if </span><span class="s1">(type == </span><span class="s5">2</span><span class="s1">) budgetSum[</span><span class="s5">2</span><span class="s1">] += roundVal(cashVal)</span><span class="s4">;</span>
+    <span class="s4">else </span><span class="s1">budgetSum[</span><span class="s5">3</span><span class="s1">] += roundVal(cashVal)</span><span class="s4">;</span>
+<span class="s1">}</span>
+
+<span class="s4">void </span><span class="s1">Budget::changeBudget(</span><span class="s4">double </span><span class="s1">newBudget[]){</span>
+    <span class="s0">// NEED better error checking: what if newBudget is null?!?!</span>
+    <span class="s0">// start: guard clauses</span>
+    <span class="s4">if </span><span class="s1">((newBudget[</span><span class="s5">0</span><span class="s1">] + newBudget[</span><span class="s5">1</span><span class="s1">] + newBudget[</span><span class="s5">2</span><span class="s1">]) != </span><span class="s5">1.0</span><span class="s1">)</span>
+        <span class="s4">throw</span><span class="s1">(</span><span class="s3">&quot;Invalid budget. Must add up to 1.0.&quot;</span><span class="s1">)</span><span class="s4">;</span>
+    <span class="s0">// end: guard clauses</span>
+    <span class="s4">for </span><span class="s1">(</span><span class="s4">int </span><span class="s1">i = </span><span class="s5">0</span><span class="s4">; </span><span class="s1">i &lt; budgetCount - </span><span class="s5">1</span><span class="s4">; </span><span class="s1">i++){</span>
+        <span class="s1">budgetPct[i] = newBudget[i]</span><span class="s4">;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span></pre>
+</body>
+</html>
