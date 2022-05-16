@@ -1,0 +1,5 @@
+C:/Users/casey/Documents/GitHub/budgetApp/qt/build-BudgetApp-Desktop_Qt_6_2_4_MinGW_64_bit-Debug/CMakeFiles/BudgetApp.dir
+C:/Users/casey/Documents/GitHub/budgetApp/qt/build-BudgetApp-Desktop_Qt_6_2_4_MinGW_64_bit-Debug/CMakeFiles/edit_cache.dir
+C:/Users/casey/Documents/GitHub/budgetApp/qt/build-BudgetApp-Desktop_Qt_6_2_4_MinGW_64_bit-Debug/CMakeFiles/rebuild_cache.dir
+C:/Users/casey/Documents/GitHub/budgetApp/qt/build-BudgetApp-Desktop_Qt_6_2_4_MinGW_64_bit-Debug/CMakeFiles/BudgetApp_autogen_timestamp_deps.dir
+C:/Users/casey/Documents/GitHub/budgetApp/qt/build-BudgetApp-Desktop_Qt_6_2_4_MinGW_64_bit-Debug/CMakeFiles/BudgetApp_autogen.dir
